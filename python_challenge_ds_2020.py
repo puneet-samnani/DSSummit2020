@@ -13,7 +13,7 @@ or in command prompt type :  python python_challenge_ds_2020.py
 import random
 
 def random_chromosome(size): # Function to generate the initial population
-    return [ random.randint(1, nq) for _ in range(nq) ]
+    return [ random.randint(0, size-1) for _ in range(size) ]
 
 def fitness(chromosome):
     horizontal_collisions = sum([chromosome.count(queen)-1 for queen in chromosome])/2
@@ -60,7 +60,7 @@ def reproduce(x, y): #doing cross_over between two chromosomes
 def mutate(x):  #randomly changing the value of a random index of a chromosome
     n = len(x)
     c = random.randint(0, n - 1)
-    m = random.randint(1, n)
+    m = random.randint(0, n - 1)
     x[c] = m
     return x
 
@@ -108,13 +108,13 @@ if __name__ == "__main__":
             chrom_out = chrom
             print_chromosome(chrom)
             
-    board = []
-
-    for x in range(nq):
-        board.append(["x"] * nq)
-        
-    for i in range(nq):
-        board[nq-chrom_out[i]][i]="Q"
+#    board = []
+#
+#    for x in range(nq):
+#        board.append(["x"] * (nq-1))
+#        
+#    for i in range(nq):
+#        board[nq-chrom_out[i]][i]="Q"
             
 
 #    def print_board(board):
