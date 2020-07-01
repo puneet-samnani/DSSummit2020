@@ -74,35 +74,37 @@ def genetic_queen(population, fitness):
         child = reproduce(x, y) #creating two new chromosomes from the best 2 chromosomes
         if random.random() < mutation_probability:
             child = mutate(child)
-        print_chromosome(child)
+#        print_chromosome(child)
         new_population.append(child)
         if fitness(child) == maxFitness: break
     return new_population
 
 def print_chromosome(chrom):
-    print("Chromosome = {},  Fitness = {}"
-        .format(str(chrom), fitness(chrom)))
+    for i in chrom: 
+        print(i, end=" ")
+        
 
 # Main function to identify the right sequence
 if __name__ == "__main__":
-    nq = int(input("Enter Number of Queens: ")) #say N = 8
+#    nq = int(input("Enter Number of Queens: ")) #say N = 8
+    nq=8
     maxFitness = (nq*(nq-1))/2  # 8*7/2 = 28
     population = [random_chromosome(nq) for _ in range(100)]
     
     generation = 1
 
     while not maxFitness in [fitness(chrom) for chrom in population]:
-        print("=== Generation {} ===".format(generation))
+#        print("=== Generation {} ===".format(generation))
         population = genetic_queen(population, fitness)
-        print("")
-        print("Maximum Fitness = {}".format(max([fitness(n) for n in population])))
+#        print("")
+#        print("Maximum Fitness = {}".format(max([fitness(n) for n in population])))
         generation += 1
     chrom_out = []
-    print("Solved in Generation {}!".format(generation-1))
+#    print("Solved in Generation {}!".format(generation-1))
     for chrom in population:
         if fitness(chrom) == maxFitness:
-            print("");
-            print("One of the solutions: ")
+#            print("");
+#            print("One of the solutions: ")
             chrom_out = chrom
             print_chromosome(chrom)
             
@@ -115,9 +117,10 @@ if __name__ == "__main__":
         board[nq-chrom_out[i]][i]="Q"
             
 
-    def print_board(board):
-        for row in board:
-            print (" ".join(row))
+#    def print_board(board):
+#        for row in board:
+#            print (" ".join(row))
             
-    print()
-    print_board(board)
+#    print()
+#    print_board(board)
+        
